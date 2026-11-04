@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>طيف Tayf 3D | مواقع تفاعلية ثلاثية الأبعاد</title>
-  <meta name="description" content="استوديو طيف لتصميم وبناء مواقع شخصية وتجارية تفاعلية وثلاثية الأبعاد بتقنيات WebGPU: مشاهد 3D حيّة، عرض منتجات تفاعلي، وحركة مرتبطة بالتمرير.">
-  <meta name="keywords" content="تصميم مواقع, مواقع ثلاثية الأبعاد, مواقع تفاعلية, صفحات هبوط, عرض منتجات 3D, WebGPU, Three.js, Tayf 3D, طيف, سوريا">
+  <title>طيف Tayf 3D | مواقع ثلاثية الأبعاد</title>
+  <meta name="description" content="طيف استوديو سوري لتصميم وبناء مواقع شخصية وتجارية تفاعلية وثلاثية الأبعاد: مواقع بتتحرّك، سريعة، وبتعلق بالبال.">
   <meta name="theme-color" content="#07060C">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://tayf3d.com/">
@@ -16,18 +15,12 @@
   <meta property="og:locale" content="ar_SY">
   <meta property="og:url" content="https://tayf3d.com/">
   <meta property="og:title" content="طيف Tayf 3D | موقعك، ببُعد تالت.">
-  <meta property="og:description" content="مواقع شخصية وتجارية تفاعلية وثلاثية الأبعاد. Websites that move.">
+  <meta property="og:description" content="مواقع شخصية وتجارية ثلاثية الأبعاد. Websites that move.">
   <meta property="og:image" content="https://tayf3d.com/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://tayf3d.com/og.jpg">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","name":"Tayf 3D","alternateName":"طيف","url":"https://tayf3d.com","email":"hello@tayf3d.com","description":"استوديو مواقع تفاعلية وثلاثية الأبعاد","areaServed":"SY","sameAs":["https://www.instagram.com/tayf_3d_web/"]}
-  </script>
-  <script>
-    document.documentElement.classList.add("js", "is-loading");
-    // safety net: never keep the page hidden if scripts fail
-    setTimeout(function () { document.documentElement.classList.remove("is-loading"); }, 9000);
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Tayf 3D","alternateName":"طيف","url":"https://tayf3d.com","email":"hello@tayf3d.com","description":"استوديو مواقع تفاعلية وثلاثية الأبعاد","areaServed":"SY","sameAs":["https://www.instagram.com/tayf_3d_web/"]}</script>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -46,282 +39,123 @@
       </symbol>
     </defs>
   </svg>
-
   <a href="#main" class="skip">انتقل للمحتوى</a>
 
-  <!-- the 3D world lives behind the whole page -->
-  <canvas id="world" class="world" aria-hidden="true"></canvas>
-  <div class="world-fallback" aria-hidden="true"></div>
-
-  <div class="preloader" id="preloader" aria-hidden="true">
-    <svg class="preloader__mark"><use href="#mark"/></svg>
-    <p class="preloader__count"><span id="loadPct">0</span><small>%</small></p>
-    <p class="preloader__note" id="loadNote">عم نجهّز الضو…</p>
-  </div>
+  <canvas id="prism" class="prism" aria-hidden="true"></canvas>
+  <div class="prism-poster" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <div class="wrap nav__inner">
+    <div class="wrap nav__in">
       <a href="#top" class="brand" aria-label="طيف Tayf 3D، للأعلى">
         <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
-        <span class="brand__word">tayf</span><span class="chip3d">3D</span>
+        <span class="brand__word">tayf</span><span class="brand__3d">3D</span>
       </a>
       <nav class="nav__links" aria-label="أقسام الموقع">
-        <a href="#services">الخدمات</a>
-        <a href="#lab">المختبر</a>
-        <a href="#layers">طبقة طبقة</a>
+        <a href="#services">شو منعمل</a>
         <a href="#process">كيف منشتغل</a>
-        <a href="#faq">أسئلة</a>
+        <a href="#contact">تواصل</a>
       </nav>
-      <a class="btn btn--small btn--primary magnetic" data-contact href="mailto:hello@tayf3d.com?subject=%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%85%D9%88%D9%82%D8%B9%20%D8%AC%D8%AF%D9%8A%D8%AF">ابدأ مشروعك</a>
+      <a class="btn btn--light btn--sm" data-contact href="mailto:hello@tayf3d.com">ابدأ مشروعك</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- 1. HERO -->
     <section class="hero" id="top" data-scene="hero" aria-labelledby="hero-title">
-      <div class="wrap hero__inner">
+      <div class="wrap hero__in">
         <div class="hero__copy">
-          <p class="eyebrow" data-intro><span class="dot"></span> استوديو مواقع تفاعلية ثلاثية الأبعاد</p>
-          <h1 class="hero__title" id="hero-title">
-            <span class="line" data-intro>موقعك،</span>
-            <span class="line grad" data-intro>ببُعد تالت.</span>
-          </h1>
-          <p class="hero__lead" data-intro>منصمّم ومنبني مواقع شخصية وتجارية بتتحرّك، بتتفاعل، وبتعلق بالبال. وهالصفحة نفسها مثال: كل شي بتشوفه هلق عم ينحسب لحظياً على كرت الشاشة.</p>
-          <div class="ctas" data-intro>
-            <a class="btn btn--primary magnetic" data-contact href="mailto:hello@tayf3d.com">ابدأ مشروعك</a>
-            <a class="btn btn--ghost magnetic" href="#lab">جرّب المختبر</a>
+          <p class="eyebrow rv">طيف · استوديو مواقع ثلاثية الأبعاد</p>
+          <h1 class="display rv" id="hero-title">موقعك،<br><em>ببُعد تالت.</em></h1>
+          <p class="lead rv">منصمّم ومنبني مواقع شخصية وتجارية بتتحرّك وبتعلق بالبال. والزجاج يلي قدّامك مو صورة: عم ينرسم لحظياً بمتصفحك.</p>
+          <div class="ctas rv">
+            <a class="btn btn--light" data-contact href="mailto:hello@tayf3d.com">ابدأ مشروعك</a>
+            <a class="link" href="#services">شو منعمل <span aria-hidden="true">←</span></a>
           </div>
         </div>
       </div>
-      <p class="hero__hint" data-intro>
-        <span class="hint-fine">حرّك الماوس، إنت عم توجّه الضو</span>
-        <span class="hint-touch">حرّك إصبعك عالشاشة، إنت عم توجّه الضو</span>
-      </p>
-      <svg class="hero__fallback-mark" aria-hidden="true"><use href="#mark"/></svg>
+      <p class="hint" aria-hidden="true"><span class="hint__dot"></span>اسحب لتلفّ الطيف</p>
     </section>
 
-    <!-- 2. MANIFESTO -->
-    <section class="manifesto" id="manifesto" data-scene="ribbon" aria-label="فكرتنا">
-      <div class="wrap">
-        <p class="manifesto__text" data-words>الطيف هو الضو لما يتفكك لكل ألوانه. وهيك منشتغل: منفكّك فكرتك لطبقات، ومنرجع منبنيها تجربة حيّة بيحسّها الزائر قبل ما يقرأها.</p>
+    <section class="statement" data-scene="statement" aria-label="فكرتنا">
+      <div class="wrap statement__in">
+        <p class="statement__text rv">الطيف هو الضو لما يتفكك لألوانه. وهيك منشتغل: منفكّك فكرتك لطبقات، ومنرجع منبنيها <em>تجربة حيّة.</em></p>
       </div>
     </section>
 
-    <!-- 3. SERVICES (sticky, three steps) -->
     <section class="services" id="services" data-scene="services" aria-labelledby="services-title">
-      <div class="services__pin">
-        <div class="wrap services__grid">
-          <div class="services__head">
-            <p class="eyebrow"><span class="dot"></span> خدماتنا</p>
-            <h2 class="h2" id="services-title">تلات أنواع،<br><span class="grad">ونفس الإبهار.</span></h2>
-          </div>
-          <div class="services__panels">
-            <article class="svc is-active" data-shape="sphere">
-              <p class="svc__n">01 <span>/ 03</span></p>
-              <h3>مواقع شخصية</h3>
-              <p class="svc__d">لأطباء، مهندسين، مدرّبين وصنّاع محتوى. موقع بيحكي عنك أحسن من أي سيرة ذاتية، وبيخلّي أول انطباع عنك صعب يُنسى.</p>
-              <ul class="svc__list">
-                <li>صفحة تعريفية بقصتك وشغلك</li>
-                <li>معرض أعمال تفاعلي</li>
-                <li>حجز مواعيد أو تواصل مباشر</li>
-                <li>دومين باسمك</li>
-              </ul>
-              <p class="svc__tech">بهالمشهد: كوكب من آلاف الجزيئات، كل جزيء إلو فيزياء خاصة فيه.</p>
-            </article>
-            <article class="svc" data-shape="city">
-              <p class="svc__n">02 <span>/ 03</span></p>
-              <h3>مواقع شركات</h3>
-              <p class="svc__d">واجهة بتعرض شغلك بثقة، وبتحوّل الزائر لزبون. هيكل واضح، محتوى سهل التعديل، وأداء سريع على كل الأجهزة.</p>
-              <ul class="svc__list">
-                <li>صفحات خدمات ومنتجات</li>
-                <li>لوحة تحكم لتعديل المحتوى</li>
-                <li>عربي وإنكليزي</li>
-                <li>مهيّأ لمحركات البحث</li>
-              </ul>
-              <p class="svc__tech">بهالمشهد: مدينة مبنية من نقاط ضو، مرسومة كلها بالكود بدون ولا صورة.</p>
-            </article>
-            <article class="svc" data-shape="galaxy">
-              <p class="svc__n">03 <span>/ 03</span></p>
-              <h3>صفحات هبوط 3D</h3>
-              <p class="svc__d">لإطلاق منتج أو حملة إعلانية. صفحة وحدة بتشد الانتباه من أول ثانية، وبتاخد الزائر خطوة خطوة لزر الشراء.</p>
-              <ul class="svc__list">
-                <li>مشاهد 3D للمنتج</li>
-                <li>حركة مرتبطة بالتمرير</li>
-                <li>مربوطة مع إعلانات فيسبوك وانستغرام</li>
-                <li>تتبّع للزيارات والتحويلات</li>
-              </ul>
-              <p class="svc__tech">بهالمشهد: مجرّة بتلف، وحركة كل نجمة فيها محسوبة بـ compute shader.</p>
-            </article>
-          </div>
-          <div class="services__stage" aria-hidden="true"></div>
-          <ol class="services__steps" aria-hidden="true"><li class="is-active"></li><li></li><li></li></ol>
+      <div class="wrap split">
+        <div class="split__side" aria-hidden="true"></div>
+        <div class="split__main">
+          <p class="eyebrow rv">شو منعمل</p>
+          <h2 class="h2 rv" id="services-title">تلات أنواع،<br><em>نفس الإبهار.</em></h2>
+          <ol class="rows">
+            <li class="row rv" data-plate="1">
+              <span class="row__n">01</span>
+              <div class="row__body">
+                <h3>مواقع شخصية</h3>
+                <p>لأطباء، مهندسين، مدرّبين وصنّاع محتوى. انطباع أول صعب يُنسى.</p>
+                <p class="row__tags">تعريف · معرض أعمال · حجز مواعيد</p>
+              </div>
+            </li>
+            <li class="row rv" data-plate="2">
+              <span class="row__n">02</span>
+              <div class="row__body">
+                <h3>مواقع شركات</h3>
+                <p>واجهة بتعرض شغلك بثقة، وبتحوّل الزائر لزبون.</p>
+                <p class="row__tags">خدمات ومنتجات · لوحة تحكم · عربي وإنكليزي</p>
+              </div>
+            </li>
+            <li class="row rv" data-plate="3">
+              <span class="row__n">03</span>
+              <div class="row__body">
+                <h3>صفحات هبوط 3D</h3>
+                <p>لإطلاق منتج أو حملة: إبهار من أول ثانية لحد زر الشراء.</p>
+                <p class="row__tags">مشاهد 3D · ربط بالإعلانات · تتبّع النتائج</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <!-- 4. LAB: live product configurator -->
-    <section class="lab" id="lab" data-scene="lab" aria-labelledby="lab-title">
-      <div class="wrap lab__grid">
-        <div class="lab__head">
-          <p class="eyebrow"><span class="dot"></span> المختبر · جرّب بإيدك</p>
-          <h2 class="h2" id="lab-title">منتجك،<br><span class="grad">قدّام الزبون.</span></h2>
-          <p class="lead">متاجر وصفحات منتجات بعرض ثلاثي الأبعاد: الزبون بيلفّ المنتج، بيغيّر لونه وتفاصيله، وبيشوفه من كل الزوايا قبل ما يشتري. جرّب هون على زجاجة عطر صمّمناها كلها بالكود.</p>
-        </div>
-        <div class="lab__ctrls">
-
-          <div class="ctrl" role="group" aria-labelledby="c-liquid">
-            <p class="ctrl__label" id="c-liquid">لون العطر <span id="liquidName">وردي</span></p>
-            <div class="swatches" id="swatches">
-              <button type="button" class="sw is-on" data-liquid="#FF4FA3" data-name="وردي" style="--c:#FF4FA3" aria-pressed="true" aria-label="وردي"></button>
-              <button type="button" class="sw" data-liquid="#9B4DFF" data-name="بنفسجي" style="--c:#9B4DFF" aria-pressed="false" aria-label="بنفسجي"></button>
-              <button type="button" class="sw" data-liquid="#4F49FF" data-name="نيلي" style="--c:#4F49FF" aria-pressed="false" aria-label="نيلي"></button>
-              <button type="button" class="sw" data-liquid="#2E8EFF" data-name="أزرق" style="--c:#2E8EFF" aria-pressed="false" aria-label="أزرق"></button>
-              <button type="button" class="sw" data-liquid="#33E1EE" data-name="فيروزي" style="--c:#33E1EE" aria-pressed="false" aria-label="فيروزي"></button>
-              <button type="button" class="sw" data-liquid="#FFA51F" data-name="عنبري" style="--c:#FFA51F" aria-pressed="false" aria-label="عنبري"></button>
-            </div>
-          </div>
-
-          <div class="ctrl" role="group" aria-labelledby="c-cap">
-            <p class="ctrl__label" id="c-cap">الغطا</p>
-            <div class="seg" id="finishes">
-              <button type="button" class="is-on" data-finish="gold" aria-pressed="true">ذهبي</button>
-              <button type="button" data-finish="chrome" aria-pressed="false">كروم</button>
-              <button type="button" data-finish="black" aria-pressed="false">أسود مطفي</button>
-              <button type="button" data-finish="prism" aria-pressed="false">طيفي</button>
-            </div>
-          </div>
-
-          <div class="ctrl">
-            <label class="ctrl__label" for="fill">كمية العطر <span id="fillVal">72%</span></label>
-            <input type="range" id="fill" min="15" max="98" value="72" class="range">
-          </div>
-
-          <ul class="chips" aria-label="شو في بهالمشهد">
-            <li>زجاج بيكسر الضو لألوانه</li>
-            <li>سائل بينكسر فيه الضو</li>
-            <li>انعكاسات استوديو لحظية</li>
-            <li>بيشتغل عالموبايل</li>
-          </ul>
-        </div>
-        <div class="lab__stage" id="labStage">
-          <canvas id="labCanvas" tabindex="0" aria-label="زجاجة عطر ثلاثية الأبعاد. اسحب لتلفّها، أو استعمل الأسهم."></canvas>
-          <img class="lab__poster" src="./lab-poster.jpg" alt="زجاجة عطر طيف ثلاثية الأبعاد" width="900" height="640" loading="lazy">
-          <p class="lab__drag" aria-hidden="true"><span>⟷</span> اسحب لتلفّ الزجاجة</p>
-          <p class="lab__tag">عطر «طيف» · 50 مل</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. LAYERS (sticky, scroll-scrubbed) -->
-    <section class="layers" id="layers" data-scene="layers" aria-labelledby="layers-title">
-      <div class="layers__pin">
-        <div class="wrap layers__grid">
-          <div class="layers__space" aria-hidden="true"></div>
-          <div class="layers__copy">
-            <p class="eyebrow"><span class="dot"></span> طبقة طبقة</p>
-            <h2 class="h2" id="layers-title">هيك <span class="grad">منبني موقعك.</span></h2>
-            <p class="lead">كل موقع منبنيه بيتألف من طبقات، وكل طبقة إلها شغلها. كمّل نزول وشوفها عم تنفصل.</p>
-            <ol class="layers__list">
-              <li><b>الأجواء</b><span>ألوان، إضاءة، وخلفية بتعطي الموقع شخصيته.</span></li>
-              <li><b>المحتوى</b><span>النصوص والصور والأقسام، مرتّبة لتوصل رسالتك.</span></li>
-              <li><b>الحركة</b><span>مجسّمات وانتقالات بتشد العين وبتوجّهها.</span></li>
-              <li><b>التفاعل</b><span>أزرار ونماذج وحجوزات… وهون الزائر بيصير زبون.</span></li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. PROCESS -->
-    <section class="process section" id="process" data-scene="calm" aria-labelledby="process-title">
+    <section class="process" id="process" data-scene="process" aria-labelledby="process-title">
       <div class="wrap">
-        <div class="section__head">
-          <p class="eyebrow"><span class="dot"></span> كيف منشتغل</p>
-          <h2 class="h2" id="process-title">من الفكرة <span class="grad">للإطلاق.</span></h2>
-        </div>
+        <p class="eyebrow rv">كيف منشتغل</p>
+        <h2 class="h2 rv" id="process-title">من الفكرة للإطلاق،<br><em>بأربع خطوات.</em></h2>
         <ol class="steps">
-          <li class="step"><span class="step__n">1</span><h3>منسمعك</h3><p>شو بتعمل، مين جمهورك، وشو بدك يحسّ الزائر لما يفتح موقعك.</p></li>
-          <li class="step"><span class="step__n">2</span><h3>منصمّم التجربة</h3><p>الشكل، الحركة، والقصة يلي رح يحكيها الموقع. بتشوفها وبتوافق عليها قبل البرمجة.</p></li>
-          <li class="step"><span class="step__n">3</span><h3>منبني ومنحرّك</h3><p>كود سريع ونظيف، ومشاهد ثلاثية الأبعاد مجرّبة عالموبايل قبل الكمبيوتر.</p></li>
-          <li class="step"><span class="step__n">4</span><h3>منطلق ومنتابع</h3><p>دومين واستضافة ونشر، ومتابعة بعد الإطلاق لأي تعديل.</p></li>
+          <li class="step rv"><span class="step__n">1</span><h3>منسمعك</h3><p>شو بتعمل، ومين جمهورك، وشو بدك يحسّ الزائر.</p></li>
+          <li class="step rv"><span class="step__n">2</span><h3>منصمّم</h3><p>الشكل والحركة والقصة، وبتوافق عليها قبل البرمجة.</p></li>
+          <li class="step rv"><span class="step__n">3</span><h3>منبني</h3><p>كود سريع، ومشاهد 3D مجرّبة عالموبايل قبل الكمبيوتر.</p></li>
+          <li class="step rv"><span class="step__n">4</span><h3>منطلق</h3><p>دومين، استضافة، ومتابعة بعد الإطلاق.</p></li>
         </ol>
-      </div>
-    </section>
-
-    <!-- 7. STACK -->
-    <section class="stack section" id="stack" data-scene="calm" aria-labelledby="stack-title">
-      <div class="wrap">
-        <div class="section__head stack__head">
-          <div>
-            <p class="eyebrow"><span class="dot"></span> الأدوات</p>
-            <h2 class="h2" id="stack-title">تقنيات 2026،<br><span class="grad">مو تقنيات 2016.</span></h2>
-          </div>
-          <p class="lead">منختار الأدوات يلي بتعطي موقعك أعلى أداء وأحلى شكل، ومنشرحلك شو بتفرق معك بكلمتين.</p>
-        </div>
-        <div class="live" aria-live="polite">
-          <span class="live__dot"></span>
-          <p>متصفحك هلق شغّال على <b id="liveBackend">…</b> وعم يحرّك <b id="liveCount">…</b> جزيء بـ <b id="liveFps">…</b> فريم بالثانية.</p>
-        </div>
-        <ul class="tech">
-          <li><span class="tech__k">WebGPU</span><p>الجيل الجديد من رسوميات الويب. أداء قريب من ألعاب الكمبيوتر، جوّا المتصفح.</p></li>
-          <li><span class="tech__k">Compute Shaders · TSL</span><p>حسابات الحركة والفيزياء بتصير على كرت الشاشة مو على المعالج، فبيضل الموقع ناعم.</p></li>
-          <li><span class="tech__k">PBR · Dispersion</span><p>مواد بتتصرّف متل الحقيقة: انعكاس، انكسار، وتشتّت الضو لألوانه.</p></li>
-          <li><span class="tech__k">GSAP · ScrollTrigger</span><p>حركة سينمائية مربوطة بالتمرير، بدقّة الفريم.</p></li>
-          <li><span class="tech__k">Lenis</span><p>تمرير ناعم ومريح، بدون ما يخرب سلوك المتصفح أو الأزرار.</p></li>
-          <li><span class="tech__k">CSS Scroll-Driven</span><p>حركات خفيفة بيشغّلها المتصفح نفسه، بدون ولا سطر جافاسكربت.</p></li>
-          <li><span class="tech__k">Adaptive Quality</span><p>الموقع بيعرف قدرة جهاز الزائر وبيعدّل التفاصيل تلقائياً، من الموبايل للكمبيوتر الجبّار.</p></li>
-          <li><span class="tech__k">Static HTML · Vite</span><p>المحتوى جاهز من أول لحظة لمحركات البحث، والـ 3D بيتحمّل وراه بدون ما يأخّر الصفحة.</p></li>
+        <ul class="facts rv" aria-label="شو بتاخد معنا">
+          <li>سريع حتى عإنترنت ضعيف</li>
+          <li>عربي من الأساس</li>
+          <li>بيشتغل على كل الشاشات</li>
         </ul>
       </div>
     </section>
 
-    <!-- 8. FAQ -->
-    <section class="faq section" id="faq" data-scene="calm" aria-labelledby="faq-title">
-      <div class="wrap faq__inner">
-        <div class="section__head">
-          <p class="eyebrow"><span class="dot"></span> أسئلة</p>
-          <h2 class="h2" id="faq-title">يلي <span class="grad">بتسأل عنه.</span></h2>
+    <section class="contact" id="contact" data-scene="contact" aria-labelledby="contact-title">
+      <div class="wrap contact__in">
+        <div class="contact__space" aria-hidden="true"></div>
+        <h2 class="display display--md rv" id="contact-title">موقعك الجاي<br><em>لازم يتحرّك.</em></h2>
+        <p class="lead rv">احكينا عن مشروعك، ومنرجعلك بتصوّر أولي وعرض سعر واضح.</p>
+        <div class="ctas ctas--center rv">
+          <a class="btn btn--light" data-contact href="mailto:hello@tayf3d.com">راسلنا هلّق</a>
+          <a class="link" href="https://www.instagram.com/tayf_3d_web/" target="_blank" rel="noopener">انستغرام <span aria-hidden="true">←</span></a>
         </div>
-        <div class="faq__list">
-          <details><summary>شو يعني WebGPU، وشو بيفرق معي؟<i aria-hidden="true"></i></summary><p>هي أحدث تقنية لرسم الـ 3D بالمتصفح، وصارت مدعومة بالمتصفحات الكبيرة. يعني مشاهد أغنى وحركة أنعم. وإذا جهاز الزائر ما بيدعمها، الموقع بيتحوّل لحاله لـ WebGL بدون ما يحس بشي.</p></details>
-          <details><summary>إذا موبايل الزبون ضعيف، الموقع بيعلّق؟<i aria-hidden="true"></i></summary><p>لا. الموقع بيقيس قدرة الجهاز وبيخفّف عدد الجزيئات والتأثيرات تلقائياً، ومنجرّب على موبايلات متوسطة قبل التسليم.</p></details>
-          <details><summary>كم بياخد الموقع وقت؟<i aria-hidden="true"></i></summary><p>حسب حجمه وكمية المشاهد ثلاثية الأبعاد فيه. منحدد المدة سوا بأول جلسة، ومنلتزم بجدول مكتوب وواضح.</p></details>
-          <details><summary>كم بتكلّف؟<i aria-hidden="true"></i></summary><p>كل موقع إلو سعر حسب حجمه وتفاصيله. راسلنا واحكينا عن مشروعك، ومنبعتلك عرض سعر مفصّل.</p></details>
-          <details><summary>بقدر عدّل المحتوى بنفسي؟<i aria-hidden="true"></i></summary><p>أكيد. إذا بدك منضيفلك لوحة تحكم بسيطة تعدّل منها النصوص والصور بدون ما ترجعلنا.</p></details>
-          <details><summary>بتعملوا عرض 3D لمنتجاتي متل المختبر؟<i aria-hidden="true"></i></summary><p>أي. منبني المنتج كمجسّم خفيف، أو منحوّل مجسّم موجود عندك، ومنربطه بخيارات الألوان والمقاسات يلي بتبيعها.</p></details>
-          <details><summary>بتشتغلوا مع زبائن برّا سوريا؟<i aria-hidden="true"></i></summary><p>أي، الشغل كلو أونلاين: الاجتماعات، التصميم، والتسليم.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. CONTACT -->
-    <section class="contact" id="contact" data-scene="word" aria-labelledby="contact-title">
-      <div class="wrap contact__inner">
-        <div class="contact__word" aria-hidden="true"></div>
-        <h2 class="contact__title" id="contact-title">موقعك الجاي<br><span class="grad">لازم يتحرّك.</span></h2>
-        <p class="lead">احكينا عن مشروعك، ومنرجعلك بتصوّر أولي.</p>
-        <div class="ctas ctas--center">
-          <a class="btn btn--primary btn--big magnetic" data-contact href="mailto:hello@tayf3d.com">راسلنا هلّق</a>
-          <a class="btn btn--ghost magnetic" href="https://www.instagram.com/tayf_3d_web/" target="_blank" rel="noopener">@tayf_3d_web</a>
-        </div>
-        <p class="contact__mail">أو عالإيميل: <span class="sel">hello@tayf3d.com</span></p>
+        <p class="mail rv">hello@tayf3d.com</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="wrap footer__inner">
-      <a href="#top" class="brand" aria-label="طيف Tayf 3D، للأعلى">
-        <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
-        <span class="brand__word">tayf</span><span class="chip3d">3D</span>
-      </a>
-      <p class="footer__tag"><em>Websites that move.</em> · مواقع بتتحرّك</p>
-      <nav class="footer__social" aria-label="حساباتنا"><a href="https://www.instagram.com/tayf_3d_web/" target="_blank" rel="noopener">Instagram</a></nav>
-      <p class="footer__copy">© <span id="year">2026</span> Tayf 3D · tayf3d.com</p>
+    <div class="wrap footer__in">
+      <span class="brand brand--sm"><svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg><span class="brand__word">tayf</span><span class="brand__3d">3D</span></span>
+      <p class="footer__tag">Websites that move · مواقع بتتحرّك</p>
+      <p class="footer__copy">© <span id="year">2026</span> Tayf 3D</p>
     </div>
   </footer>
-
-  <div class="hud" id="hud" aria-hidden="true"><span class="hud__dot"></span><span id="hudText">3D</span></div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
