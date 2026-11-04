@@ -102,24 +102,6 @@ function boot() {
   );
   rows.forEach((r) => rowIo.observe(r));
 
-  // gentle reveals
-  const groups = new Map<Element, number>();
-  const rv = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (!e.isIntersecting) continue;
-        const parent = e.target.parentElement!;
-        const i = groups.get(parent) ?? 0;
-        groups.set(parent, i + 1);
-        (e.target as HTMLElement).style.setProperty('--i', String(Math.min(i, 4)));
-        e.target.classList.add('in');
-        rv.unobserve(e.target);
-      }
-    },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
-  );
-  $$('.rv').forEach((el) => rv.observe(el));
-
   // nav gets a glass background once you scroll
   const nav = $('#nav');
   space = $('.contact__space');
