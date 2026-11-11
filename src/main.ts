@@ -12,11 +12,13 @@ const root = document.documentElement;
 const narrow = matchMedia('(max-width: 900px)');
 
 /* ---------- where the glass goes in each part of the page ---------- */
-type Scene = 'hero' | 'statement' | 'services' | 'process' | 'contact';
+type Scene = 'hero' | 'statement' | 'services' | 'concepts' | 'process' | 'faq' | 'contact';
 const WIDE: Record<Scene, PrismTarget> = {
   hero: { x: -0.47, y: 0.0, zoom: 0.86, spread: 0, twist: 1, fade: 1, floor: 1, pitch: 0.5 },
   statement: { x: -0.5, y: 0.02, zoom: 0.74, spread: 0.34, twist: 1.7, fade: 1, floor: 0.55, pitch: 0.62 },
   services: { x: -0.5, y: -0.02, zoom: 0.66, spread: 1, twist: 2.3, fade: 1, floor: 0, pitch: 0.4 },
+  concepts: { x: -0.7, y: 0.6, zoom: 0.4, spread: 0.6, twist: 2.6, fade: 0, floor: 0, pitch: 0.6 },
+  faq: { x: -0.5, y: 0.0, zoom: 0.62, spread: 0.55, twist: 3.4, fade: 1, floor: 0, pitch: 0.5 },
   process: { x: -0.62, y: 0.55, zoom: 0.42, spread: 0.5, twist: 3, fade: 0, floor: 0, pitch: 0.7 },
   contact: { x: 0, y: 0.34, zoom: 0.66, spread: 0, twist: 1, fade: 1, floor: 0, pitch: 0.55 },
 };
@@ -26,6 +28,8 @@ const NARROW: Record<Scene, PrismTarget> = {
   statement: { x: 0, y: 0.62, zoom: 0.4, spread: 0.4, twist: 1.8, fade: 0, floor: 0, pitch: 0.6 },
   services: { x: 0, y: 0.62, zoom: 0.4, spread: 1, twist: 2.3, fade: 0, floor: 0, pitch: 0.45 },
   process: { x: 0, y: 0.62, zoom: 0.4, spread: 0.5, twist: 3, fade: 0, floor: 0, pitch: 0.6 },
+  concepts: { x: 0, y: 0.62, zoom: 0.4, spread: 0.6, twist: 2.6, fade: 0, floor: 0, pitch: 0.6 },
+  faq: { x: 0, y: 0.62, zoom: 0.4, spread: 0.55, twist: 3.4, fade: 0, floor: 0, pitch: 0.6 },
   contact: { x: 0, y: 0.42, zoom: 0.52, spread: 0, twist: 1, fade: 1, floor: 0, pitch: 0.55 },
 };
 
@@ -101,6 +105,41 @@ function boot() {
     { rootMargin: '-40% 0px -40% 0px' },
   );
   rows.forEach((r) => rowIo.observe(r));
+
+  // sections arrive as you reach them
+  const rvIo = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add('in');
+        rvIo.unobserve(e.target);
+      }
+    },
+    { rootMargin: '0px 0px -12% 0px' },
+  );
+  $$('.rv').forEach((el) => {
+    const sibs = Array.from(el.parentElement!.children).filter((c) => c.classList.contains('rv'));
+    el.style.setProperty('--d', `${sibs.indexOf(el) * 90}ms`);
+    rvIo.observe(el);
+  });
+
+  // the concept mockups lean toward the pointer (or the finger)
+  $$('.demo__stage').forEach((st) => {
+    const t = st.querySelector('.tilt') as HTMLElement;
+    st.addEventListener('pointermove', (e) => {
+      const r = st.getBoundingClientRect();
+      t.style.setProperty('--ry', `${(((e.clientX - r.left) / r.width) - 0.5) * 34}deg`);
+      t.style.setProperty('--rx', `${-(((e.clientY - r.top) / r.height) - 0.5) * 18}deg`);
+      st.classList.add('is-held');
+    });
+    const release = () => {
+      t.style.setProperty('--ry', '0deg');
+      t.style.setProperty('--rx', '0deg');
+      st.classList.remove('is-held');
+    };
+    st.addEventListener('pointerleave', release);
+    st.addEventListener('pointercancel', release);
+  });
 
   // nav gets a glass background once you scroll
   const nav = $('#nav');

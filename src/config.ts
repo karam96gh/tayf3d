@@ -7,7 +7,7 @@ export const site = {
   name: 'Tayf 3D',
   url: 'https://tayf3d.com',
   email: 'hello@tayf3d.com',
-  whatsapp: '',
+  whatsapp: '9639941899671',
   instagram: 'https://www.instagram.com/tayf_3d_web/',
   message: 'مرحبا طيف، بدي احكي معكم عن موقع لمشروعي',
 };
